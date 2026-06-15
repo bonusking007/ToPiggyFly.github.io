@@ -4,269 +4,393 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ถึงผักกาด 💖</title>
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
-
-* { box-sizing: border-box; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  margin: 0;
   min-height: 100vh;
   font-family: 'Itim', cursive;
-  background:
-    radial-gradient(circle at top, #fff9fd, #ffe4f1 38%, #fff4df 100%);
+  background: linear-gradient(160deg, #fff9fd 0%, #ffe4f1 40%, #fff4df 100%);
   overflow-y: auto;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 30px 16px;
+  padding: 30px 16px 50px;
 }
 
+/* ---- sparkle bg ---- */
 .sparkle {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
   background-image:
     radial-gradient(circle, rgba(255,255,255,.95) 1px, transparent 1px),
-    radial-gradient(circle, rgba(255,105,180,.55) 1px, transparent 1px);
+    radial-gradient(circle, rgba(255,105,180,.5) 1px, transparent 1px);
   background-size: 32px 32px, 58px 58px;
   animation: shine 8s linear infinite;
-  z-index: 0;
 }
-
 @keyframes shine {
   from { background-position: 0 0, 0 0; }
-  to { background-position: 220px -220px, -220px 220px; }
+  to   { background-position: 220px -220px, -220px 220px; }
 }
 
+/* ---- card ---- */
 .card {
-  width: 100%;
-  max-width: 430px;
-  padding: 28px 22px;
+  width: 100%; max-width: 430px;
+  padding: 28px 22px 32px;
   border-radius: 36px;
-  background: rgba(255,255,255,0.72);
-  backdrop-filter: blur(16px);
-  box-shadow:
-    0 25px 70px rgba(255, 105, 180, .38),
-    inset 0 0 18px rgba(255,255,255,.8);
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 25px 70px rgba(255,105,180,.35), inset 0 0 18px rgba(255,255,255,.8);
   border: 2px solid rgba(255,255,255,.95);
   text-align: center;
-  position: relative;
-  z-index: 2;
+  position: relative; z-index: 2;
+  animation: cardIn .7s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes cardIn {
+  from { opacity:0; transform: translateY(40px) scale(.92); }
+  to   { opacity:1; transform: translateY(0) scale(1); }
 }
 
+/* ---- badge ---- */
 .badge {
-  display: inline-block;
-  padding: 7px 18px;
+  display: inline-block; padding: 7px 18px;
   border-radius: 999px;
   background: linear-gradient(135deg, #fff, #ffe1ef);
-  color: #ff4fa3;
-  font-size: 20px;
-  box-shadow: 0 8px 18px rgba(255,105,180,.22);
+  color: #ff4fa3; font-size: 18px;
+  box-shadow: 0 6px 16px rgba(255,105,180,.22);
+  animation: badgePop .5s .3s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes badgePop {
+  from { opacity:0; transform: scale(.6); }
+  to   { opacity:1; transform: scale(1); }
 }
 
 h1 {
-  font-size: 43px;
-  margin: 14px 0 3px;
+  font-size: 42px; margin: 14px 0 3px;
   color: #ff4fa3;
   text-shadow: 0 3px 0 #fff;
+  animation: slideDown .5s .4s ease both;
 }
-
 .subtitle {
-  font-size: 24px;
-  color: #8b5a5a;
-  margin-bottom: 12px;
+  font-size: 22px; color: #b56a7a; margin-bottom: 14px;
+  animation: slideDown .5s .5s ease both;
+}
+@keyframes slideDown {
+  from { opacity:0; transform: translateY(-12px); }
+  to   { opacity:1; transform: translateY(0); }
 }
 
+/* ---- photo ---- */
+.photo-wrap {
+  position: relative; display: inline-block; margin: 10px 0 6px;
+  animation: photoIn .6s .55s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes photoIn {
+  from { opacity:0; transform: scale(.7) rotate(-6deg); }
+  to   { opacity:1; transform: scale(1) rotate(0deg); }
+}
 .main-photo {
-  width: 220px;
-  height: 220px;
-  object-fit: cover;
+  width: 210px; height: 210px; object-fit: cover;
   border-radius: 50%;
-  margin: 15px 0;
   border: 6px solid white;
-  box-shadow:
-    0 0 25px rgba(255,182,193,.9),
-    0 0 65px rgba(255,105,180,.45);
-  animation: cuteFloat 3s ease-in-out infinite;
+  box-shadow: 0 0 28px rgba(255,182,193,.9), 0 0 60px rgba(255,105,180,.4);
+  animation: cuteFloat 3.2s ease-in-out infinite;
+  display: block;
 }
-
 @keyframes cuteFloat {
   0%,100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-10px) scale(1.03); }
+  50%      { transform: translateY(-10px) scale(1.03); }
 }
 
+/* ---- ring pulse around photo ---- */
+.ring {
+  position: absolute; inset: -14px;
+  border-radius: 50%;
+  border: 3px solid rgba(255,105,180,.35);
+  animation: ringPulse 2.5s ease-in-out infinite;
+}
+.ring2 {
+  position: absolute; inset: -26px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,182,193,.25);
+  animation: ringPulse 2.5s .6s ease-in-out infinite;
+}
+@keyframes ringPulse {
+  0%,100% { transform: scale(1); opacity:.7; }
+  50%      { transform: scale(1.06); opacity:.3; }
+}
+
+/* ---- question ---- */
 .question {
-  font-size: 36px;
-  color: #4b2b2b;
-  margin: 18px 0 15px;
+  font-size: 34px; color: #4b2b2b;
+  margin: 18px 0 8px;
+  animation: fadeUp .5s .7s ease both;
+}
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(10px); }
+  to   { opacity:1; transform: translateY(0); }
 }
 
+/* ---- hint text typing ---- */
+.hint {
+  font-size: 17px; color: #c9809e; margin-bottom: 18px; min-height: 24px;
+  animation: fadeUp .5s .85s ease both;
+}
+
+/* ---- buttons ---- */
+.btn-wrap { animation: fadeUp .5s .9s ease both; }
 button {
-  border: none;
-  border-radius: 999px;
-  font-family: 'Itim', cursive;
-  font-weight: bold;
-  cursor: pointer;
-  transition: .25s ease;
-  box-shadow: 0 10px 25px rgba(0,0,0,.16);
+  border: none; border-radius: 999px;
+  font-family: 'Itim', cursive; font-weight: bold;
+  cursor: pointer; transition: .22s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,.14);
 }
-
 #love {
   background: linear-gradient(135deg, #ff4fa3, #ffb6d5, #ffd6e7);
-  color: white;
-  font-size: 34px;
-  padding: 18px 68px;
-  margin: 12px;
+  color: white; font-size: 32px; padding: 17px 62px; margin: 10px;
+  position: relative; overflow: hidden;
 }
+#love::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(255,255,255,.4) 0%, transparent 65%);
+  border-radius: inherit;
+}
+#love:hover  { transform: scale(1.09); box-shadow: 0 14px 35px rgba(255,105,180,.45); }
+#love:active { transform: scale(.97); }
 
 #no {
-  background: linear-gradient(135deg, #777, #eee);
-  color: #444;
-  font-size: 30px;
-  padding: 15px 55px;
-  margin: 12px;
+  background: linear-gradient(135deg, #aaa, #ddd);
+  color: #555; font-size: 28px; padding: 13px 50px; margin: 10px;
+}
+#no:hover  { transform: scale(1.04); }
+#no:active { transform: scale(.97); }
+
+/* ---- no messages ---- */
+.no-msg {
+  font-size: 19px; color: #e07070; margin: 6px 0 0;
+  min-height: 26px; animation: msgPop .3s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes msgPop {
+  from { opacity:0; transform: scale(.7); }
+  to   { opacity:1; transform: scale(1); }
 }
 
-#love:hover {
-  transform: scale(1.08);
-}
-
+/* ---- floating emojis ---- */
 .float {
-  position: fixed;
-  font-size: 28px;
-  animation: floatUp 5s linear infinite;
-  opacity: .85;
-  z-index: 1;
-  pointer-events: none;
+  position: fixed; pointer-events: none;
+  animation: floatUp 5.5s linear forwards; z-index: 1;
 }
-
 @keyframes floatUp {
-  from { transform: translateY(110vh) rotate(0deg); opacity: 1; }
-  to { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+  0%   { transform: translateY(110vh) rotate(0deg) scale(1); opacity:1; }
+  80%  { opacity:.8; }
+  100% { transform: translateY(-12vh) rotate(380deg) scale(.6); opacity:0; }
 }
 
+/* ---- fullLove overlay ---- */
 .fullLove {
-  position: fixed !important;
-  inset: 0;
-  z-index: 99;
+  position: fixed !important; inset: 0; z-index: 99;
   border-radius: 0 !important;
-  font-size: 52px !important;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 20px;
+  font-size: 46px !important;
+  width: 100vw; height: 100vh;
+  display: flex; align-items: center;
+  justify-content: center; text-align: center; padding: 20px;
+  background: linear-gradient(135deg, #ff4fa3, #ffb6d5, #ffd6e7) !important;
+  animation: fullIn .4s ease;
+}
+@keyframes fullIn {
+  from { opacity:0; transform: scale(.95); }
+  to   { opacity:1; transform: scale(1); }
 }
 
+/* ---- love page ---- */
 .lovePage {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #fff0f7, #ffe7cf, #fff8ed);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  font-family: 'Itim', cursive;
-  padding: 40px 25px;
+  min-height: 100vh; width: 100%;
+  background: linear-gradient(150deg, #fff0f7, #ffe7cf, #fff8ed);
+  display: flex; justify-content: center; align-items: center;
+  flex-direction: column; text-align: center;
+  font-family: 'Itim', cursive; padding: 40px 25px;
 }
-
 .lovePage img {
-  width: 250px;
-  border-radius: 32px;
+  width: 240px; border-radius: 32px;
   box-shadow: 0 18px 45px rgba(255,105,180,.35);
+  animation: photoIn .7s cubic-bezier(.34,1.56,.64,1) both;
+}
+.lovePage h1 { font-size: 44px; color: #ff4fa3; margin: 18px 0 8px; animation: slideDown .5s .3s ease both; }
+.lovePage .love-msg {
+  font-size: 22px; color: #6b3b3b; max-width: 380px;
+  line-height: 1.7; opacity: 0;
+  animation: fadeUp .6s ease forwards;
+}
+/* stagger each paragraph */
+.lovePage .love-msg:nth-child(3) { animation-delay: .5s; }
+.lovePage .love-msg:nth-child(4) { animation-delay: .9s; }
+.lovePage .love-msg:nth-child(5) { animation-delay: 1.3s; }
+.lovePage .love-msg:nth-child(6) { animation-delay: 1.7s; }
+
+/* ---- confetti burst on love ---- */
+.confetti {
+  position: fixed; pointer-events: none; z-index: 100;
+  width: 12px; height: 12px; border-radius: 2px;
+  animation: confettiFall linear forwards;
+}
+@keyframes confettiFall {
+  0%   { transform: translateY(0) rotate(0deg); opacity:1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity:0; }
 }
 
-.lovePage h1 {
-  font-size: 46px;
-  color: #ff4fa3;
+/* ---- heartbeat on LOVE btn ---- */
+@keyframes heartbeat {
+  0%,100% { transform: scale(1); }
+  14% { transform: scale(1.13); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.08); }
+  70% { transform: scale(1); }
 }
-
-.lovePage p {
-  font-size: 28px;
-  color: #6b3b3b;
-  max-width: 400px;
-}
+.pulse { animation: heartbeat 1.4s ease infinite; }
 </style>
 </head>
 
 <body>
-
 <div class="sparkle"></div>
 
-<div class="card">
+<div class="card" id="mainCard">
   <div class="badge">For my Piggy 2026 ✨</div>
-
   <h1>ถึงผักกาด 💖</h1>
   <div class="subtitle">หมูอ้วนของพี่ 🐷✨</div>
 
-  <img class="main-photo" src="dog.png">
+  <div class="photo-wrap">
+    <div class="ring2"></div>
+    <div class="ring"></div>
+    <img class="main-photo" src="dog.png" alt="ผักกาด">
+  </div>
 
   <div class="question">ผักกาดรักพี่มั้ยยคะ?</div>
+  <div class="hint" id="hint">💭 กดเลยนะ อย่าลังเล~</div>
 
-  <button id="love" onclick="loveAnswer()">LOVE 💗</button><br>
-  <button id="no" onclick="noAnswer()">NO 😤</button>
+  <div class="btn-wrap">
+    <button id="love" onclick="loveAnswer()">LOVE 💗</button><br>
+    <button id="no" onclick="noAnswer()">NO 😤</button>
+  </div>
+  <div class="no-msg" id="noMsg"></div>
 </div>
 
 <script>
-let loveSize = 34;
-let noSize = 30;
-let lovePad = 68;
-let noPad = 55;
-let count = 0;
+let loveSize = 32, noSize = 28, lovePad = 62, noPad = 50, count = 0;
+
+const noMsgs = [
+  "อ้าว~ ไม่ใช่แน่ๆ 🥺",
+  "ลองกดใหม่นะ ผิดปุ่มรึเปล่า? 👉💗",
+  "แน่ใจแล้วหรอ?? 🐷💦",
+  "พี่เสียใจมากๆเลยนะ 😭",
+  "โอกาสสุดท้ายแล้วนะผักกาด...",
+  "ไม่มีทางเลือกอื่นแล้ว 💖💖💖"
+];
+
+// heartbeat on love btn after 2s
+setTimeout(() => {
+  const l = document.getElementById("love");
+  if (l) l.classList.add("pulse");
+}, 2000);
 
 function noAnswer() {
   count++;
-
-  loveSize += 20;
-  lovePad += 30;
-  noSize -= 5;
-  noPad -= 9;
+  loveSize += 18; lovePad += 28;
+  noSize  -= 5;  noPad  -= 9;
 
   const love = document.getElementById("love");
-  const no = document.getElementById("no");
+  const no   = document.getElementById("no");
+  const msg  = document.getElementById("noMsg");
+  const hint = document.getElementById("hint");
 
   love.style.fontSize = loveSize + "px";
-  love.style.padding = "18px " + lovePad + "px";
+  love.style.padding  = "18px " + lovePad + "px";
+  no.style.fontSize   = Math.max(noSize, 8) + "px";
+  no.style.padding    = "10px " + Math.max(noPad, 4) + "px";
 
-  no.style.fontSize = Math.max(noSize, 8) + "px";
-  no.style.padding = "10px " + Math.max(noPad, 5) + "px";
+  // show message
+  if (msg) {
+    msg.textContent = noMsgs[Math.min(count - 1, noMsgs.length - 1)];
+    msg.style.animation = "none";
+    requestAnimationFrame(() => { msg.style.animation = "msgPop .3s cubic-bezier(.34,1.56,.64,1)"; });
+  }
+  if (hint) hint.textContent = "";
+
+  // shake card
+  const card = document.getElementById("mainCard");
+  card.style.animation = "shake .4s ease";
+  card.addEventListener("animationend", () => {
+    card.style.animation = "none";
+  }, { once: true });
 
   if (count >= 6) {
     no.style.display = "none";
     love.classList.add("fullLove");
+    love.classList.remove("pulse");
     love.innerHTML = "ต้อง LOVE แล้วนะผักกาด 💖";
+    love.onclick = loveAnswer;
   }
 }
 
 function loveAnswer() {
-  document.body.innerHTML = `
-    <div class="lovePage">
-      <img src="pig pk.jpg">
-      <h1>พี่รักผักกาดที่สุดเลย 💖</h1>
-      <p>🐷✨หมูอ้วนของพี่น่ารักที่สุดในโลก</p>
-      <p>ขอโทดนะคับที่เมื่อก่อนพี่เป็นคนแบบนั้น ทำเทอคิดมาก ต้องมานั่งเครียดตอนสอบ🌸</p>
-      <p>💕ทำให้เทอสอบได้คะแนนน้อยอีก ความผิดพี่เต็มๆ พี่สัญญาจะปรับตัวเพื่อเบบี๋หมูอ้วนนะ</p>
-      <p>จากพี่ที่รักผักกาดมากที่สุด 🤍</p>
-    </div>
-  `;
+  // confetti burst
+  const colors = ["#ff4fa3","#ffb6d5","#ffd6e7","#fff176","#b2ebf2","#f8bbd0"];
+  for (let i = 0; i < 70; i++) {
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = (Math.random() * 100) + "vw";
+    c.style.top  = "-20px";
+    c.style.background = colors[Math.floor(Math.random() * colors.length)];
+    c.style.width  = (8 + Math.random() * 10) + "px";
+    c.style.height = (8 + Math.random() * 10) + "px";
+    c.style.animationDuration = (1.5 + Math.random() * 2) + "s";
+    c.style.animationDelay = (Math.random() * .5) + "s";
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 4000);
+  }
+
+  setTimeout(() => {
+    document.body.innerHTML = `
+      <div class="lovePage">
+        <img src="pig pk.jpg" alt="pig">
+        <h1>พี่รักผักกาดที่สุดเลย 💖</h1>
+        <p class="love-msg">🐷✨ หมูอ้วนของพี่น่ารักที่สุดในโลก</p>
+        <p class="love-msg">ขอโทดนะคับที่เมื่อก่อนพี่เป็นคนแบบนั้น<br>ทำเทอคิดมาก ต้องมานั่งเครียดตอนสอบ 🌸</p>
+        <p class="love-msg">💕 ทำให้เทอสอบได้คะแนนน้อยอีก<br>ความผิดพี่เต็มๆ พี่สัญญาจะปรับตัวเพื่อเบบี๋หมูอ้วนนะ</p>
+        <p class="love-msg">จากพี่ที่รักผักกาดมากที่สุด 🤍</p>
+      </div>
+    `;
+    // restart floaty emojis
+    setInterval(createHeart, 300);
+  }, 600);
 }
+
+// shake keyframe injected via JS
+const shakeStyle = document.createElement("style");
+shakeStyle.textContent = `
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-8px) rotate(-1.5deg); }
+    40% { transform: translateX(8px)  rotate(1.5deg); }
+    60% { transform: translateX(-6px) rotate(-1deg); }
+    80% { transform: translateX(6px)  rotate(1deg); }
+  }
+`;
+document.head.appendChild(shakeStyle);
 
 function createHeart() {
   const heart = document.createElement("div");
   heart.className = "float";
-  heart.innerHTML = ["💖","✨","🐷","💕","🌸","💗"][Math.floor(Math.random()*6)];
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+  const emojis = ["💖","✨","🐷","💕","🌸","💗","🎀","🍬","💝"];
+  heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+  heart.style.left   = Math.random() * 96 + "vw";
+  heart.style.fontSize = (20 + Math.random() * 18) + "px";
+  heart.style.animationDuration = (4 + Math.random() * 3) + "s";
   document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
+  setTimeout(() => heart.remove(), 7000);
 }
 
-setInterval(createHeart, 320);
+setInterval(createHeart, 300);
 </script>
-
 </body>
 </html>
