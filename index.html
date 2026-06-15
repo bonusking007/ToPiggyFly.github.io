@@ -16,10 +16,11 @@ body {
   font-family: 'Itim', cursive;
   background:
     radial-gradient(circle at top, #fff9fd, #ffe4f1 38%, #fff4df 100%);
-  overflow: hidden;
+  overflow-y: auto;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding: 30px 16px;
 }
 
 .sparkle {
@@ -31,6 +32,7 @@ body {
     radial-gradient(circle, rgba(255,105,180,.55) 1px, transparent 1px);
   background-size: 32px 32px, 58px 58px;
   animation: shine 8s linear infinite;
+  z-index: 0;
 }
 
 @keyframes shine {
@@ -39,9 +41,8 @@ body {
 }
 
 .card {
-  width: 90%;
+  width: 100%;
   max-width: 430px;
-  min-height: 650px;
   padding: 28px 22px;
   border-radius: 36px;
   background: rgba(255,255,255,0.72);
@@ -138,6 +139,7 @@ button {
   animation: floatUp 5s linear infinite;
   opacity: .85;
   z-index: 1;
+  pointer-events: none;
 }
 
 @keyframes floatUp {
@@ -150,38 +152,43 @@ button {
   inset: 0;
   z-index: 99;
   border-radius: 0 !important;
-  font-size: 72px !important;
+  font-size: 52px !important;
   width: 100vw;
   height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
 }
 
 .lovePage {
-  height:100vh;
-  background:linear-gradient(135deg,#fff0f7,#ffe7cf,#fff8ed);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  text-align:center;
-  font-family:'Itim',cursive;
-  padding:25px;
-  overflow:hidden;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fff0f7, #ffe7cf, #fff8ed);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  font-family: 'Itim', cursive;
+  padding: 40px 25px;
 }
 
 .lovePage img {
-  width:250px;
-  border-radius:32px;
-  box-shadow:0 18px 45px rgba(255,105,180,.35);
+  width: 250px;
+  border-radius: 32px;
+  box-shadow: 0 18px 45px rgba(255,105,180,.35);
 }
 
 .lovePage h1 {
-  font-size:46px;
-  color:#ff4fa3;
+  font-size: 46px;
+  color: #ff4fa3;
 }
 
 .lovePage p {
-  font-size:28px;
-  color:#6b3b3b;
+  font-size: 28px;
+  color: #6b3b3b;
+  max-width: 400px;
 }
 </style>
 </head>
