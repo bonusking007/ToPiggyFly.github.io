@@ -1,2 +1,263 @@
-# ToPiggyFly.github.io
-bonusking007/ToPiggyFly.github.io
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ถึงผักกาด 💖</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Itim', cursive;
+  background:
+    radial-gradient(circle at top, #fff9fd, #ffe4f1 38%, #fff4df 100%);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sparkle {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,.95) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,105,180,.55) 1px, transparent 1px);
+  background-size: 32px 32px, 58px 58px;
+  animation: shine 8s linear infinite;
+}
+
+@keyframes shine {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 220px -220px, -220px 220px; }
+}
+
+.card {
+  width: 90%;
+  max-width: 430px;
+  min-height: 650px;
+  padding: 28px 22px;
+  border-radius: 36px;
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(16px);
+  box-shadow:
+    0 25px 70px rgba(255, 105, 180, .38),
+    inset 0 0 18px rgba(255,255,255,.8);
+  border: 2px solid rgba(255,255,255,.95);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.badge {
+  display: inline-block;
+  padding: 7px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fff, #ffe1ef);
+  color: #ff4fa3;
+  font-size: 20px;
+  box-shadow: 0 8px 18px rgba(255,105,180,.22);
+}
+
+h1 {
+  font-size: 43px;
+  margin: 14px 0 3px;
+  color: #ff4fa3;
+  text-shadow: 0 3px 0 #fff;
+}
+
+.subtitle {
+  font-size: 24px;
+  color: #8b5a5a;
+  margin-bottom: 12px;
+}
+
+.main-photo {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 15px 0;
+  border: 6px solid white;
+  box-shadow:
+    0 0 25px rgba(255,182,193,.9),
+    0 0 65px rgba(255,105,180,.45);
+  animation: cuteFloat 3s ease-in-out infinite;
+}
+
+@keyframes cuteFloat {
+  0%,100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-10px) scale(1.03); }
+}
+
+.question {
+  font-size: 36px;
+  color: #4b2b2b;
+  margin: 18px 0 15px;
+}
+
+button {
+  border: none;
+  border-radius: 999px;
+  font-family: 'Itim', cursive;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .25s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,.16);
+}
+
+#love {
+  background: linear-gradient(135deg, #ff4fa3, #ffb6d5, #ffd6e7);
+  color: white;
+  font-size: 34px;
+  padding: 18px 68px;
+  margin: 12px;
+}
+
+#no {
+  background: linear-gradient(135deg, #777, #eee);
+  color: #444;
+  font-size: 30px;
+  padding: 15px 55px;
+  margin: 12px;
+}
+
+#love:hover {
+  transform: scale(1.08);
+}
+
+.float {
+  position: fixed;
+  font-size: 28px;
+  animation: floatUp 5s linear infinite;
+  opacity: .85;
+  z-index: 1;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(110vh) rotate(0deg); opacity: 1; }
+  to { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+.fullLove {
+  position: fixed !important;
+  inset: 0;
+  z-index: 99;
+  border-radius: 0 !important;
+  font-size: 72px !important;
+  width: 100vw;
+  height: 100vh;
+}
+
+.lovePage {
+  height:100vh;
+  background:linear-gradient(135deg,#fff0f7,#ffe7cf,#fff8ed);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+  font-family:'Itim',cursive;
+  padding:25px;
+  overflow:hidden;
+}
+
+.lovePage img {
+  width:250px;
+  border-radius:32px;
+  box-shadow:0 18px 45px rgba(255,105,180,.35);
+}
+
+.lovePage h1 {
+  font-size:46px;
+  color:#ff4fa3;
+}
+
+.lovePage p {
+  font-size:28px;
+  color:#6b3b3b;
+}
+</style>
+</head>
+
+<body>
+
+<div class="sparkle"></div>
+
+<div class="card">
+  <div class="badge">For my Piggy 2026 ✨</div>
+
+  <h1>ถึงผักกาด 💖</h1>
+  <div class="subtitle">หมูอ้วนของพี่ 🐷✨</div>
+
+  <img class="main-photo" src="dog.png">
+
+  <div class="question">ผักกาดรักพี่มั้ยย?</div>
+
+  <button id="love" onclick="loveAnswer()">LOVE 💗</button><br>
+  <button id="no" onclick="noAnswer()">NO 😤</button>
+</div>
+
+<script>
+let loveSize = 34;
+let noSize = 30;
+let lovePad = 68;
+let noPad = 55;
+let count = 0;
+
+function noAnswer() {
+  count++;
+
+  loveSize += 20;
+  lovePad += 30;
+  noSize -= 5;
+  noPad -= 9;
+
+  const love = document.getElementById("love");
+  const no = document.getElementById("no");
+
+  love.style.fontSize = loveSize + "px";
+  love.style.padding = "18px " + lovePad + "px";
+
+  no.style.fontSize = Math.max(noSize, 8) + "px";
+  no.style.padding = "10px " + Math.max(noPad, 5) + "px";
+
+  if (count >= 6) {
+    no.style.display = "none";
+    love.classList.add("fullLove");
+    love.innerHTML = "ต้อง LOVE แล้วนะผักกาด 💖";
+  }
+}
+
+function loveAnswer() {
+  document.body.innerHTML = `
+    <div class="lovePage">
+      <img src="https://media.tenor.com/7wqRZJXgRyoAAAAC/love-pig.gif">
+      <h1>พี่รักผักกาดที่สุดเลย 💖</h1>
+      <p>หมูอ้วนของพี่น่ารักที่สุดในโลก 🐷✨</p>
+      <p>จากพี่ที่รักผักกาดมากที่สุด 🤍</p>
+    </div>
+  `;
+}
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "float";
+  heart.innerHTML = ["💖","✨","🐷","💕","🌸","💗"][Math.floor(Math.random()*6)];
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}
+
+setInterval(createHeart, 320);
+</script>
+
+</body>
+</html>
